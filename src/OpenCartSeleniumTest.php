@@ -75,10 +75,10 @@ class OpenCartSeleniumTest extends PHPUnit_Extensions_Selenium2TestCase {
 				$db->query("INSERT INTO `" . DB_PREFIX . "user` SET user_id = '1', user_group_id = '1', username = '" . ADMIN_USERNAME . "', salt = '" . $db->escape($salt = substr(md5(uniqid(rand(), true)), 0, 9)) . "', password = '" . $db->escape(sha1($salt . sha1($salt . sha1(ADMIN_PASSWORD)))) . "', status = '1', email = '" . $db->escape('admin@localhost') . "', date_added = NOW()");
 
 				$db->query("DELETE FROM `" . DB_PREFIX . "setting` WHERE `key` = 'config_email'");
-				$db->query("INSERT INTO `" . DB_PREFIX . "setting` SET `group` = 'config', `key` = 'config_email', value = '" . $db->escape('admin@localhost') . "'");
+				$db->query("INSERT INTO `" . DB_PREFIX . "setting` SET `code` = 'config', `key` = 'config_email', value = '" . $db->escape('admin@localhost') . "'");
 
 				$db->query("DELETE FROM `" . DB_PREFIX . "setting` WHERE `key` = 'config_encryption'");
-				$db->query("INSERT INTO `" . DB_PREFIX . "setting` SET `group` = 'config', `key` = 'config_encryption', value = '" . $db->escape(md5(mt_rand())) . "'");
+				$db->query("INSERT INTO `" . DB_PREFIX . "setting` SET `code` = 'config', `key` = 'config_encryption', value = '" . $db->escape(md5(mt_rand())) . "'");
 
 				$db->query("UPDATE `" . DB_PREFIX . "product` SET `viewed` = '0'");
 			}
